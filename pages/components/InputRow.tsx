@@ -22,7 +22,7 @@ const InputRow: React.FC<InputRowProps> = ({ onClear, isDisabled }) => {
   };
 
   const handleValueChange = (value: string) => {
-    if (/([^가-힣ㄱ-ㅎㅏ-ㅣ\x20])/i.test(value)) {
+    if (/([^가-힣ㄱ-ㅎㅏ-ㅣㆍᆢ\x20])/i.test(value)) {
       return alert('한글만 입력해주세요.');
     }
     setPointer(Math.min(Math.max(value.length - 1, 0), 2));
