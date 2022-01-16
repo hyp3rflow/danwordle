@@ -17,7 +17,6 @@ const Home: NextPage = () => {
       <Head>
         <title>단어들 - Korean Wordle</title>
         <meta name="description" content="Danwordle, Korean Wordle" />
-        <link rel="icon" href="/favicon.ico" />
         <link
           href="http://cdn.jsdelivr.net/gh/sunn-us/SUIT/fonts/variable/woff2/SUIT-Variable.css"
           rel="stylesheet"
