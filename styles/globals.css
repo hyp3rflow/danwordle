@@ -2,8 +2,6 @@ html,
 body {
   padding: 0;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
 }
 
 a {
@@ -13,4 +11,17 @@ a {
 
 * {
   box-sizing: border-box;
+  font-family: 'SUIT Variable', -apple-system, BlinkMacSystemFont, Segoe UI,
+    Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue,
+    sans-serif;
+}
+
+input {
+  border: none;
+  padding: 12px;
+  background-color: #f8f9fa;
+  width: 80px;
+  height: 80px;
+  text-align: center;
+  font-size: 30px;
 }

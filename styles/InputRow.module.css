@@ -1,0 +1,35 @@
+.hiddenInput {
+  position: absolute;
+  z-index: -1;
+  opacity: 0;
+}
+
+.row {
+  display: flex;
+}
+
+.circle {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: #f1f3f5;
+}
+
+.circleContainer {
+  display: flex;
+  justify-content: space-around;
+  padding: 4px;
+}
+
+.selectedInput,
+.selectedInput input {
+  background-color: #d0ebff;
+}
+
+.circleGood {
+  background-color: #8ce99a;
+}
+
+.circleSoso {
+  background-color: #ffc078;
+}
