@@ -41,6 +41,13 @@ const InputRow: React.FC<InputRowProps> = ({ onClear, isDisabled }) => {
     <form
       onKeyPress={async e => {
         if (e.key === 'Enter') {
+          const { data: isHangul } = await axios.get<boolean>(
+            '/api/checkText',
+            {
+              params: { text: state },
+            }
+          );
+          if (!isHangul) return alert('정상적인 한글이 아닙니다');
           if (state.length < 3) return alert('단어는 3글자여야 합니다.');
           const response = await axios.get<AnswerResponse>('/api/submit', {
             params: { text: state },
