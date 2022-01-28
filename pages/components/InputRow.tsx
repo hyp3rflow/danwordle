@@ -3,6 +3,7 @@ import styles from '../../styles/InputRow.module.css';
 import SyllabaleInput from './SyllableInput';
 import axios from 'axios';
 import { Result } from '../api/submit.api';
+import * as Hangul from 'hangul-js';
 
 interface InputRowProps {
   onClear(): void;
@@ -41,6 +42,8 @@ const InputRow: React.FC<InputRowProps> = ({ onClear, isDisabled }) => {
     <form
       onKeyPress={async e => {
         if (e.key === 'Enter') {
+          if (!Hangul.isCompleteAll(state))
+            return alert('정상적인 한글이 아닙니다');
           if (state.length < 3) return alert('단어는 3글자여야 합니다.');
           const response = await axios.get<Result>('/api/submit', {
             params: { text: state },
