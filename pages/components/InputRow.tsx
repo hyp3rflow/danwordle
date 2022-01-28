@@ -2,7 +2,7 @@ import React from 'react';
 import styles from '../../styles/InputRow.module.css';
 import SyllabaleInput from './SyllableInput';
 import axios from 'axios';
-import { AnswerResponse } from '../api/submit.api';
+import { Result } from '../api/submit.api';
 import * as Hangul from 'hangul-js';
 
 interface InputRowProps {
@@ -14,7 +14,7 @@ const InputRow: React.FC<InputRowProps> = ({ onClear, isDisabled }) => {
   const realInputRef = React.useRef<HTMLInputElement>(null);
   const [state, setState] = React.useState<string>('');
   const [pointer, setPointer] = React.useState(0);
-  const [result, setResult] = React.useState<AnswerResponse>();
+  const [result, setResult] = React.useState<Result>();
 
   const handleFocusChange = (index: number) => {
     realInputRef.current?.focus();
@@ -45,7 +45,7 @@ const InputRow: React.FC<InputRowProps> = ({ onClear, isDisabled }) => {
           if (!Hangul.isCompleteAll(state))
             return alert('정상적인 한글이 아닙니다');
           if (state.length < 3) return alert('단어는 3글자여야 합니다.');
-          const response = await axios.get<AnswerResponse>('/api/submit', {
+          const response = await axios.get<Result>('/api/submit', {
             params: { text: state },
           });
           setResult(response.data);
@@ -73,7 +73,7 @@ const InputRow: React.FC<InputRowProps> = ({ onClear, isDisabled }) => {
         return (
           <SyllabaleInput
             key={index}
-            result={result?.answer[index]}
+            result={result?.result[index]}
             isDisabled={isDisabled}
             isFocused={pointer === index}
             onFocusChange={() => handleFocusChange(index)}
