@@ -1,13 +1,13 @@
 import React from 'react';
 import styles from '../../styles/InputRow.module.css';
-import { Answer, Score } from '../api/submit.api';
+import { CharacterStatus, Status } from '../api/submit.api';
 
 interface SyllableInputProps {
   isDisabled?: boolean;
   isFocused: boolean;
   onFocusChange(): void;
   value: string;
-  result?: Answer;
+  result?: CharacterStatus;
 }
 
 const SyllabaleInput: React.FC<SyllableInputProps> = ({
@@ -17,11 +17,11 @@ const SyllabaleInput: React.FC<SyllableInputProps> = ({
   value,
   result,
 }) => {
-  const getCircleStyle = (score?: Score) => {
+  const getCircleStyle = (score?: Status) => {
     switch (score) {
-      case 'good':
+      case 'position-correct':
         return styles.circleGood;
-      case 'soso':
+      case 'position-incorrect':
         return styles.circleSoso;
     }
   };
@@ -31,13 +31,13 @@ const SyllabaleInput: React.FC<SyllableInputProps> = ({
       <input readOnly value={value} onFocus={() => onFocusChange()} />
       <div className={styles.circleContainer}>
         <div
-          className={[styles.circle, getCircleStyle(result?.onset)].join(' ')}
+          className={[styles.circle, getCircleStyle(result?.[0])].join(' ')}
         />
         <div
-          className={[styles.circle, getCircleStyle(result?.nucleus)].join(' ')}
+          className={[styles.circle, getCircleStyle(result?.[1])].join(' ')}
         />
         <div
-          className={[styles.circle, getCircleStyle(result?.coda)].join(' ')}
+          className={[styles.circle, getCircleStyle(result?.[2])].join(' ')}
         />
       </div>
     </div>
