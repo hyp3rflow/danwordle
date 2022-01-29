@@ -38,6 +38,16 @@ const InputRow: React.FC<InputRowProps> = ({ onClear, isDisabled }) => {
     realInputRef.current?.focus();
   }, [isDisabled]);
 
+  React.useEffect(() => {
+    if (
+      result?.result.every(status =>
+        status.every(item => item === 'position-correct')
+      )
+    ) {
+      alert('You win!');
+    }
+  }, [result]);
+
   return (
     <form
       onKeyPress={async e => {

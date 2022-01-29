@@ -39,6 +39,8 @@ const Home: NextPage = () => {
         <InputRow onClear={handleSubmit} isDisabled={currentRow !== 2} />
         <InputRow onClear={handleSubmit} isDisabled={currentRow !== 3} />
         <InputRow onClear={handleSubmit} isDisabled={currentRow !== 4} />
+        <InputRow onClear={handleSubmit} isDisabled={currentRow !== 5} />
+        <InputRow onClear={handleSubmit} isDisabled={currentRow !== 6} />
       </main>
     </div>
   );
