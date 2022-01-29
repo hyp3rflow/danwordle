@@ -45,11 +45,20 @@ const InputRow: React.FC<InputRowProps> = ({ onClear, isDisabled }) => {
           if (!Hangul.isCompleteAll(state))
             return alert('정상적인 한글이 아닙니다');
           if (state.length < 3) return alert('단어는 3글자여야 합니다.');
-          const response = await axios.get<Result>('/api/submit', {
-            params: { text: state },
-          });
-          setResult(response.data);
-          onClear();
+          try {
+            const response = await axios.get<Result>('/api/submit', {
+              params: { text: state },
+            });
+            setResult(response.data);
+            onClear();
+          } catch (e) {
+            if (axios.isAxiosError(e)) {
+              if (e.response?.status === 401) {
+                return alert('유효한 글자가 아니에요');
+              }
+              return alert('에러가 발생했어요');
+            }
+          }
         }
       }}
       className={styles.row}

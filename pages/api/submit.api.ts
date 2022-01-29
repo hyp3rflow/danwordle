@@ -33,9 +33,9 @@ export default function handler(
   res: NextApiResponse<Result>
 ) {
   const { text: _text } = req.query as Payload;
-  if (!_text) return res.status(400);
+  if (!_text) return res.status(400).end();
   const text = _text.slice(0, 3);
-  if (!words.includes(text)) return res.status(401);
+  if (!words.includes(text)) return res.status(401).end();
   const answer = getTodayAnswer();
 
   const textProfile = getProfile(text);
@@ -61,6 +61,7 @@ function getDefaultProfile(): Profile {
 
 function getTodayAnswer() {
   const index = Math.floor(randomNumber * words.length);
+  console.log(words[index]);
   return words[index];
 }
 
